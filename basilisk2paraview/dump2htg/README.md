@@ -29,6 +29,7 @@
    ```bash
    qcc -O2 -Wall dump2htg.c -o dump2htg -lm
    ./dump2htg
+   
    The program creates htg/ and writes <time>.htg files there.
 4) Open htg/*.htg directly in ParaView.
    `Set view direction to +Z`, then `Rotate 90° clockwise` to align the display with the simulation's physical axes.
@@ -45,4 +46,5 @@
  ## Troubleshooting
  - If dumps are not found or permissions fail, check relative paths and file access rights.
  - To export additional fields, append them to the argument lists of output_htg().
+
 
