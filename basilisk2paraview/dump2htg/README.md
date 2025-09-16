@@ -46,8 +46,3 @@
  ## Troubleshooting
  - If dumps are not found or permissions fail, check relative paths and file access rights.
  - To export additional fields, append them to the argument lists of output_htg().
-
-
-
-
-
