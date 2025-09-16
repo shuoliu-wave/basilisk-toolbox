@@ -1,5 +1,11 @@
-/*  This script converts Basilisk dump files into .htg format for visualization in ParaView.
-    Note that in the exported files, the x–y axes are swapped in 2D and the x–z axes are swapped in 3D, including for vector components such as u and g.  */
+/* 
+ * This script converts Basilisk dump files into .htg format for visualization in ParaView.
+ * Note that in the exported files, the x–y axes are swapped in 2D and the x–z axes are swapped in 3D, including for vector components such as u and g.
+ * 
+ * Usage:
+ *   qcc -O2 -Wall dump2htg.c -o dump2htg -lm
+ *   ./dump2htg
+ */
 #include "grid/quadtree.h"
 #include "navier-stokes/centered.h"
 #include "two-phase.h"
