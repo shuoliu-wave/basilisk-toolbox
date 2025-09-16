@@ -5,8 +5,6 @@
 #include "two-phase.h"
 #include "output_htg.h"
 
-#define MAXLEVEL 14
-#define MINLEVEL 9
 vector U[], G[];
 scalar step[];  //step
 scalar dissrate[];  //dissipation rate in water
@@ -21,12 +19,17 @@ event logfile (i = 0) {
   system("mkdir -p htg");
   int i = 0;
   double timebgn = 0.0;
-  double timestp = 0.1;
+  double timestp = 0.05;
   double timeend = 2.0;
 
   for(double timeload = timebgn; timeload <= timeend + 1e-9; timeload += timestp) {
     sprintf(filename_dump,"../dumps/dump%g", timeload);
-    restore (file = filename_dump);
+    if (!restore (file = filename_dump)) {
+      fprintf (stderr,
+               "[SKIP] Failed to restore '%s' (file missing/corrupt/incompatible)."
+               "Skip processing for t=%g.\n", filename_dump, timeload);
+      continue;
+    }
 
     foreach() {
       foreach_dimension() {
@@ -44,7 +47,7 @@ event logfile (i = 0) {
 
     sprintf (filename_htg, "%.1f", timeload);
     output_htg ((scalar *) {f,l,omega,dissrate,step}, (vector *) {U,G}, path, filename_htg, i, timeload);
-    fprintf (stderr, "restore dump%g, output %.1f.htg, success!\n", timeload, timeload);
+    fprintf (stderr, "restore '%s', output '%s/%s.htg', success!\n", filename_dump, path, filename_htg);
     i++;
   }
 }
