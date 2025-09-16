@@ -17,7 +17,7 @@ int main() {
 
 event logfile (i = 0) {
   system("mkdir -p htg");
-  int i = 0;
+  int n = 0;
   double timebgn = 0.0;
   double timestp = 0.05;
   double timeend = 2.0;
@@ -46,8 +46,8 @@ event logfile (i = 0) {
     vorticity (U, omega);
 
     sprintf (filename_htg, "%.1f", timeload);
-    output_htg ((scalar *) {f,l,omega,dissrate,step}, (vector *) {U,G}, path, filename_htg, i, timeload);
+    output_htg ((scalar *) {f,l,omega,dissrate,step}, (vector *) {U,G}, path, filename_htg, n, timeload);
     fprintf (stderr, "restore '%s', output '%s/%s.htg', success!\n", filename_dump, path, filename_htg);
-    i++;
+    n++;
   }
 }
