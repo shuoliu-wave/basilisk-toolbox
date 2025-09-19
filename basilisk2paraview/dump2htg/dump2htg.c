@@ -25,7 +25,7 @@ event logfile (i = 0) {
   system("mkdir -p htg");
   int n = 0;
   double timebgn = 0.0;
-  double timestp = 0.05;
+  double timestp = 0.1;
   double timeend = 2.0;
 
   for(double timeload = timebgn; timeload <= timeend + 1e-9; timeload += timestp) {
